@@ -25,14 +25,6 @@ pacman::p_load(tidyverse,
 
 What characteristics are commonly associated with suspicious financial transactions?
 
-ggplot(rules, aes(x = support, y = lift)) +
-
-geom_point(aes(color = money_laundering_risk), size = 3) +
-
-labs(title = "Lift vs. Support of Association Rules", x = "Support", y = "Lift") +
-
-theme_minimal()
-
 ```{r}
 #| warning: False
 #| message: False
