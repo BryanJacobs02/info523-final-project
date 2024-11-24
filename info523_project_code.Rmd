@@ -49,7 +49,6 @@ money_data_bins = money_data |>
 # create new df with relevant data
 money_data_relevant = tibble(money_data_bins$country,
                      money_data_bins$financial_institution,
-                     money_data_bins$risk_binned,
                      money_data_bins$amount_binned,
                      money_data_bins$shell_binned,
                      money_data_bins$source_of_money,
@@ -58,7 +57,6 @@ money_data_relevant = tibble(money_data_bins$country,
 
 colnames(money_data_relevant) = c("country",
                           "financial_institution",
-                          "money_laundering_risk",
                           "amount_usd",
                           "shell_companies_involved",
                           "source_of_money",
@@ -71,9 +69,6 @@ transactions = as(money_data_relevant, "transactions")
 # generate rules with minimum support and confidence thresholds
 rules = apriori(transactions, parameter = list(supp = 0.01, conf = 0.6))
 
-# inspect top rules
-inspect(head(rules, 10))
-
 # filter out illegal sources of money
 suspicious_rules = subset(rules, rhs %in% "source_of_money=Illegal")
 
@@ -83,6 +78,9 @@ suspicious_rules = sort(suspicious_rules, by = "lift", decreasing = TRUE)
 # inspect 10 strongest rules
 suspicious_top10 = head(suspicious_rules, 10)
 
-# plot rules
+# plot top 10 rules
 plot(suspicious_top10, method = "graph", engine = "htmlwidget")
+
+# plot all rules
+plot(suspicious_rules, method = "graph", engine = "htmlwidget")
 ```
