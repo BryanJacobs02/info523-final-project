@@ -1,0 +1,17 @@
+---
+title: "INFO 523 Final Project"
+output: html_document
+date: "2024-11-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1
+
+What are the characteristics of flagged anomalous transactions?
+
+```{r}
+
+```
