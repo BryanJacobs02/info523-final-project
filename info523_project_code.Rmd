@@ -1,5 +1,6 @@
 ---
 title: "INFO 523 Final Project"
+author: "Bryan Jacobs and Anirudh K"
 output: html_document
 date: "2024-11-23"
 ---
@@ -8,10 +9,88 @@ date: "2024-11-23"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+# Install packages
+if (!require("pacman")) 
+  install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               janitor,
+               dplyr,
+               arules,
+               arulesViz)
+```
+
 ## Question 1
 
-What are the characteristics of flagged anomalous transactions?
+What characteristics are commonly associated with suspicious financial transactions?
+
+ggplot(rules, aes(x = support, y = lift)) +
+
+geom_point(aes(color = money_laundering_risk), size = 3) +
+
+labs(title = "Lift vs. Support of Association Rules", x = "Support", y = "Lift") +
+
+theme_minimal()
 
 ```{r}
+#| warning: False
+#| message: False
 
+# Load in the data
+money_data = read.csv("data/Big_Black_Money_Dataset.csv")
+
+# clean column names
+money_data = clean_names(money_data)
+
+# bin relevant continuous data
+money_data_bins = money_data |>
+  mutate(
+    risk_binned = cut(money_laundering_risk_score, breaks = c(0, 2.5, 5, 7.5, 10),
+                      labels = c("Low", "Medium", "High", "Very High")),
+    amount_binned = cut(amount_usd, breaks = c(10000, 50000, 100000, 500000, 1000000, 5000000),
+    labels = c("10k-50k", "50k-100k", "100k-500k", "500k-1M", "1M-5M")),
+    shell_binned = cut(shell_companies_involved, breaks = c(-0.1, 0.1, 1, 4, 7, 9),
+                       labels = c("0", "1", "2-4", "5-7", "8-9"))
+  )
+
+# create new df with relevant data
+money_data_relevant = tibble(money_data_bins$country,
+                     money_data_bins$financial_institution,
+                     money_data_bins$risk_binned,
+                     money_data_bins$amount_binned,
+                     money_data_bins$shell_binned,
+                     money_data_bins$source_of_money,
+                     money_data_bins$industry,
+                     money_data_bins$transaction_type)
+
+colnames(money_data_relevant) = c("country",
+                          "financial_institution",
+                          "money_laundering_risk",
+                          "amount_usd",
+                          "shell_companies_involved",
+                          "source_of_money",
+                          "industry",
+                          "transaction_type")
+
+# convert to transactions object
+transactions = as(money_data_relevant, "transactions")
+
+# generate rules with minimum support and confidence thresholds
+rules = apriori(transactions, parameter = list(supp = 0.01, conf = 0.6))
+
+# inspect top rules
+inspect(head(rules, 10))
+
+# filter out illegal sources of money
+suspicious_rules = subset(rules, rhs %in% "source_of_money=Illegal")
+
+# sort suspicious rules by lift
+suspicious_rules = sort(suspicious_rules, by = "lift", decreasing = TRUE)
+
+# inspect 10 strongest rules
+suspicious_top10 = head(suspicious_rules, 10)
+
+# plot rules
+plot(suspicious_top10, method = "graph", engine = "htmlwidget")
 ```
