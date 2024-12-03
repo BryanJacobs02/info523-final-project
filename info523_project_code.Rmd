@@ -84,3 +84,11 @@ plot(suspicious_top10, method = "graph", engine = "htmlwidget")
 # plot all rules
 plot(suspicious_rules, method = "graph", engine = "htmlwidget")
 ```
+
+## Question 2
+
+```{r}
+# q2 code
+```
+
+## 
