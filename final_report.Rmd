@@ -1,11 +1,3 @@
----
-output: html_document
-css: |
-  body {
-    line-height: 5;
-  }
----
-
 # Identifying Characteristics of Suspicious Transactions Using Association Rule Mining and Time Series Anomaly Detection
 
 ## Bryan Jacobs & Anirudh Koganti
@@ -15,3 +7,5 @@ css: |
 #### Introduction
 
 The dataset used in this project comes from Kaggle and contains information about various transactions that have taken place around the world. The data includes attributes about the industry, people, type of money, and companies involved as well as the date, country, and destination country of each transaction. The data contains transactions that took place in 2013 and 2014 and offers a comprehensive view of legal and illegal transactions that occur across the globe.
+
+#### Question 1

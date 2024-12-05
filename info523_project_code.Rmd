@@ -80,9 +80,6 @@ suspicious_top10 = head(suspicious_rules, 10)
 
 # plot top 10 rules
 plot(suspicious_top10, method = "graph", engine = "htmlwidget")
-
-# plot all rules
-plot(suspicious_rules, method = "graph", engine = "htmlwidget")
 ```
 
 ## Question 2
