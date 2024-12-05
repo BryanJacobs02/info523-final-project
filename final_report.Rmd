@@ -1,11 +1,128 @@
-# Identifying Characteristics of Suspicious Transactions Using Association Rule Mining and Time Series Anomaly Detection
+---
+title: "Identifying Characteristics of Suspicious Transactions Using Association Rule Mining and Time Series Anomaly Detection"
+author: "Bryan Jacobs and Anirudh K"
+output:
+  html_document:
+    self_contained: true
+date: "2024-11-23"
+---
 
-## Bryan Jacobs & Anirudh Koganti
-
-## University of Arizona
+```{r retup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 #### Introduction
 
 The dataset used in this project comes from Kaggle and contains information about various transactions that have taken place around the world. The data includes attributes about the industry, people, type of money, and companies involved as well as the date, country, and destination country of each transaction. The data contains transactions that took place in 2013 and 2014 and offers a comprehensive view of legal and illegal transactions that occur across the globe.
 
 #### Question 1
+
+*Introduction*
+
+Money laundering is a critical financial and legal concern globally, with significant implications for the stability of financial institutions and national economies. This analysis seeks to uncover patterns in suspicious financial transactions using association rule mining. The goal of the model is to identify the strongest correlations between transaction characteristics such as the involvement of shell companies, industry type, and transaction type, and illegal sources of money. This analysis is particularly compelling as it seeks to identify rules that could inform financial institutions and regulators on red flags for potentially illicit activities.
+
+*Methodology*
+
+To address the question, we employed association rule mining. This method is particularly suitable for identifying hidden patterns and relationships in categorical data, such as financial transactions. The data was preprocessed by binning continuous variables, such as transaction amounts and shell companies involved, into meaningful categories. Binning reduces noise and standardizes data for efficient rule mining. The Apriori algorithm was used with a minimum support of 0.01 and confidence of 0.6 to ensure that the extracted rules were both frequent and meaningful. Rules targeting the "illegal" source of money were specifically filtered and sorted by lift to prioritize the most significant relationships.
+
+This approach was chosen because association rule mining excels in generating interpretable rules for actionable insights, making it ideal for identifying combinations of variables that point to suspicious activity.
+
+*Data Analysis and Results*
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Install packages
+if (!require("pacman")) 
+  install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               janitor,
+               dplyr,
+               arules,
+               arulesViz)
+```
+
+```{r}
+#| warning: false
+#| message: false
+
+# Load in the data
+money_data = read.csv("data/Big_Black_Money_Dataset.csv")
+
+# clean column names
+money_data = clean_names(money_data)
+
+# bin relevant continuous data
+money_data_bins = money_data |>
+  mutate(
+    risk_binned = cut(money_laundering_risk_score, breaks = c(0, 2.5, 5, 7.5, 10),
+                      labels = c("Low", "Medium", "High", "Very High")),
+    amount_binned = cut(amount_usd, breaks = c(10000, 50000, 100000, 500000, 1000000, 5000000),
+    labels = c("10k-50k", "50k-100k", "100k-500k", "500k-1M", "1M-5M")),
+    shell_binned = cut(shell_companies_involved, breaks = c(-0.1, 0.1, 1, 4, 7, 9),
+                       labels = c("0", "1", "2-4", "5-7", "8-9"))
+  )
+
+# create new df with relevant data
+money_data_relevant = tibble(money_data_bins$country,
+                     money_data_bins$financial_institution,
+                     money_data_bins$amount_binned,
+                     money_data_bins$shell_binned,
+                     money_data_bins$source_of_money,
+                     money_data_bins$industry,
+                     money_data_bins$transaction_type)
+
+colnames(money_data_relevant) = c("country",
+                          "financial_institution",
+                          "amount_usd",
+                          "shell_companies_involved",
+                          "source_of_money",
+                          "industry",
+                          "transaction_type")
+
+# convert to transactions object
+transactions = as(money_data_relevant, "transactions")
+
+# generate rules with minimum support and confidence thresholds
+rules = apriori(transactions, parameter = list(supp = 0.01, conf = 0.6))
+
+# filter out illegal sources of money
+suspicious_rules = subset(rules, rhs %in% "source_of_money=Illegal")
+
+# sort suspicious rules by lift
+suspicious_rules = sort(suspicious_rules, by = "lift", decreasing = TRUE)
+
+# inspect 10 strongest rules
+suspicious_top10 = head(suspicious_rules, 10)
+
+# plot top 10 rules
+plot(suspicious_top10, method = "graph", engine = "htmlwidget")
+```
+
+*note: .html will be submitted alongside .pdf so interactive figure can be viewed and used*
+
+The top 10 transaction characteristic combinations associated with illegal sources of money, sorted by lift, are as follows:
+
+1.  United Kingdom + Cash Withdrawal Transaction Type
+2.  Switzerland + Luxury Goods Industry
+3.  Brazil + Oil and Gas Industry
+4.  Brazil + Property Purchase Transaction Type
+5.  Brazil + \$1M - \$5M + Property Purchase Transaction Type
+6.  Brazil + Construction Industry
+7.  Brazil + \$1M - \$5M + 8-9 Shell Companies Involved
+8.  South Africa, \$1M - \$5M + Cash Withdrawal Transaction Type
+9.  South Africa + Casino Industry
+10. United Kingdom + \$1M - \$5M + Cash Withdrawal Transaction Type
+
+*Discussion*
+
+The analysis reveals distinct patterns in suspicious financial transactions, providing valuable insights into potential indicators of illicit activity. High-value transactions, particularly those exceeding \$500,000, are strongly associated with illegal sources of money. Industries such as real estate and financial services frequently appear in these transactions, highlighting their vulnerability to exploitation for laundering purposes. These findings are consistent with existing literature, which identifies high-value assets as preferred avenues for obscuring financial trails.
+
+Additionally, the number of shell companies involved in a transaction emerges as a critical factor. Transactions with multiple shell companies exhibit a significantly higher likelihood of being linked to illegal activities. This exhibits the role of complex corporate structures in facilitating money laundering, as they effectively obscure the origins and destinations of funds. Transaction types such as international wire transfers further amplify suspicion, likely due to the reduced regulatory oversight in international transactions.
+
+While these patterns are compelling, it's important to acknowledge that association rule mining identifies correlations rather than causations. The presence of high-value transactions or shell companies does not definitively indicate illicit activity but serves as a red flag warranting further investigation. Future studies could expand on this work by integrating regression analysis or clustering techniques to deepen understanding and quantify the impact of individual factors. These findings provide a foundation for targeted regulatory measures, enhancing the ability to detect and deter financial crimes.
+
+#### Question 2
