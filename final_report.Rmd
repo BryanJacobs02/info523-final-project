@@ -34,15 +34,14 @@ This approach was chosen because association rule mining excels in generating in
 #| message: false
 #| warning: false
 
-# Install packages
-if (!require("pacman")) 
-  install.packages("pacman")
 
 pacman::p_load(tidyverse,
                janitor,
                dplyr,
                arules,
-               arulesViz)
+               arulesViz,
+               anomalize,
+               caret)
 ```
 
 ```{r}
@@ -126,3 +125,145 @@ Additionally, the number of shell companies involved in a transaction emerges as
 While these patterns are compelling, it's important to acknowledge that association rule mining identifies correlations rather than causations. The presence of high-value transactions or shell companies does not definitively indicate illicit activity but serves as a red flag warranting further investigation. Future studies could expand on this work by integrating regression analysis or clustering techniques to deepen understanding and quantify the impact of individual factors. These findings provide a foundation for targeted regulatory measures, enhancing the ability to detect and deter financial crimes.
 
 #### Question 2
+
+```{r}
+
+#| warning: false
+#| message: false
+
+
+data <- read.csv("data/Big_Black_Money_Dataset.csv")
+
+# Convert 'Date of Transaction' to a Date-Time format
+data$`Date of Transaction` <- as.POSIXct(data$`Date.of.Transaction`, format = "%d-%m-%Y %H:%M")
+
+# Group data by date and sum the transaction amount
+time_series_data <- data |>
+  mutate(Date = as.Date(`Date of Transaction`)) |>
+  group_by(Date) |>
+  summarize(Total_Transaction_Amount = sum(`Amount..USD.`))
+
+# Apply anomalize to detect anomalies
+anomaly_results <- time_series_data |>
+  time_decompose(Total_Transaction_Amount, method = "stl") |>
+  anomalize(remainder, method = "iqr") |>
+  time_recompose()
+
+# Plot anomalies with customized Y-axis format (in thousands with dollar sign)
+anomaly_results |>
+  plot_anomalies(time_recomposed = TRUE) +
+  scale_y_continuous(
+    labels = scales::dollar_format(suffix = "k", scale = 1e-3) # Convert to thousands and add dollar sign
+  ) +
+  labs(
+    title = "Anomalies in Total Transaction Amount Over Time",
+    x = "Date",
+    y = "Total Transaction Amount ($ in thousands)"
+  )
+
+
+#Determining the accuracy of the model
+threshold <- quantile(time_series_data$Total_Transaction_Amount, 0.95)
+anomaly_results <- anomaly_results |>
+  left_join(time_series_data, by = "Date") |>
+  mutate(
+    Ground_Truth = ifelse(Total_Transaction_Amount > threshold, 1, 0),
+    Predicted_Anomaly = ifelse(anomaly == "Yes", 1, 0)
+  )
+
+confusion <- confusionMatrix(
+  factor(anomaly_results$Predicted_Anomaly),
+  factor(anomaly_results$Ground_Truth)
+)
+
+# Extract metrics from the confusion matrix
+accuracy <- confusion$overall["Accuracy"]
+precision <- confusion$byClass["Precision"]
+recall <- confusion$byClass["Recall"]
+f1_score <- 2 * ((precision * recall) / (precision + recall))
+
+# Print the metrics
+cat("Accuracy: ", accuracy, "\n")
+cat("Precision: ", precision, "\n")
+cat("Recall: ", recall, "\n")
+cat("F1 Score: ", f1_score, "\n")
+
+
+
+
+
+
+```
+
+
+*Discussion:*
+
+**Process Overview**
+
+**Data Preparation and Cleaning:**
+
+The dataset was loaded and cleaned, with the Date of Transaction column converted into a usable date-time format.
+Daily totals of transaction amounts were aggregated to simplify the analysis and highlight trends over time.
+Anomaly Detection Using the anomalize Package:
+
+The time series was decomposed into trend, seasonal, and remainder components using STL decomposition.
+Anomalies were identified in the remainder component based on statistical thresholds (Interquartile Range - IQR), isolating data points that deviate significantly from expected patterns.
+Detected anomalies were recomposed back into the time series for visualization.
+
+**Visualization:
+
+A time-series plot was generated with anomalies highlighted, providing a clear view of when unusual spikes or drops occurred.
+
+**Ground Truth and Evaluation:**
+
+A ground truth was simulated by marking transactions above the 95th percentile as anomalies.
+
+The model's predictions were compared against this ground truth using evaluation metrics such as:
+
+Accuracy: Proportion of correctly identified anomalies and normal points.
+
+Precision: Proportion of predicted anomalies that were truly anomalous.
+
+Recall: Proportion of actual anomalies correctly identified.
+
+F1-Score: A harmonic mean of precision and recall, providing a balanced measure of performance.
+
+
+**Results and Output:**
+
+The detected anomalies, along with evaluation results, were saved to a CSV file for further analysis or reporting.
+Metrics were displayed to quantify the model's performance.
+
+**Insights and Findings**
+
+The anomaly detection model effectively flagged irregularities in daily transaction amounts, providing a baseline for further investigation.
+
+The performance metrics (e.g., accuracy, precision, recall, and F1-score) give a quantifiable measure of the model's ability to identify anomalies.
+
+While the model successfully identifies outliers statistically, the interpretation of anomalies requires domain expertise to confirm their significance.
+
+**Model Limitations**
+
+***Unsupervised Nature:***
+
+Without a labeled dataset, the model relies on statistical thresholds to detect anomalies, which may not perfectly align with real-world definitions of "anomalous behavior."
+
+***Ground Truth Assumptions:***
+Using a threshold-based ground truth (e.g., 95th percentile) is an approximation that might not reflect actual anomalies.
+
+**Future Directions**
+
+***Labeled Dataset:***
+Incorporate ground-truth labels for anomalies, enabling supervised learning and more accurate evaluation metrics.
+
+***Enhanced Methods:***
+Experiment with advanced anomaly detection algorithms, such as machine learning models (e.g., Isolation Forest, One-Class SVM).
+
+***Real-Time Monitoring:***
+Extend the model to handle real-time data streams for proactive anomaly detection.
+
+***Granular Analysis:***
+Drill down into anomalies by categories like Country, Transaction Type, or Industry to uncover targeted insights.
+
+***Integration with External Data:***
+Include external factors (e.g., economic indicators, geopolitical events) to improve anomaly interpretation and contextualize unusual patterns.
