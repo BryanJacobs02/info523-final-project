@@ -126,6 +126,39 @@ While these patterns are compelling, it's important to acknowledge that associat
 
 #### Question 2
 
+*Introduction*
+
+In this project, we focus on identifying anomalies in financial transaction data over time using time-series analysis. The dataset contains key details such as transaction amounts, dates, transaction types, and associated countries. For this study, we specifically analyzed the Date of Transaction and Amount (USD) columns to aggregate daily transaction totals and detect any irregular patterns.
+
+The motivation behind this analysis stems from the critical need to identify unexpected spikes or drops in financial transactions, which could signal important events such as fraudulent activity, operational issues, or other irregularities. By uncovering such anomalies, businesses can take proactive measures, improve risk management, and enhance the integrity of their financial systems.
+
+
+*Methodology*
+
+To detect anomalies, we employed a structured and systematic approach using time-series analysis methods supported by the anomalize R package. The steps followed are:
+
+**Data Preprocessing:**
+The Date of Transaction column was converted into a proper date format, and transaction amounts were aggregated daily. This ensured the data was in a suitable form for time-series analysis, making it easier to observe trends over time.
+
+**Time-Series Decomposition:**
+Using STL (Seasonal-Trend decomposition using Loess), the time series was broken into three components:
+
+- Trend: Long-term patterns in the data.
+
+- Seasonality: Recurring patterns over fixed intervals.
+
+- Remainder: Irregular fluctuations that could represent potential anomalies.
+
+**Anomaly Detection:**
+The Interquartile Range (IQR) method was applied to the remainder component of the time series. This approach effectively flags anomalies by identifying points that deviate significantly from the expected range, while being robust to outliers.
+
+**Visualization:**
+Anomalies were visualized on a time-series plot with clear highlights, making it easy to observe unusual spikes or drops. The Y-axis was formatted to show transaction amounts in thousands for better readability.
+
+This methodology was chosen because time-series decomposition separates noise from regular patterns, while the IQR method provides a simple yet powerful statistical approach for detecting anomalies.
+
+*Data Analysis and Results*
+
 ```{r}
 
 #| warning: false
@@ -194,6 +227,26 @@ cat("F1 Score: ", f1_score, "\n")
 
 
 ```
+The following key steps and insights were derived from the analysis:
+
+**Data Aggregation:**
+Transaction amounts were grouped by day to observe daily trends. This provided a clearer picture of how financial activity fluctuates over time.
+
+**Anomaly Detection:**
+By decomposing the time series and applying the IQR method, significant deviations from the expected transaction patterns were identified. These anomalies represent unusual spikes or drops that warrant further investigation.
+
+**Visualization of Anomalies:**
+The final time-series plot highlights anomalies as dark points outside a shaded region of expected values. The Y-axis was reformatted to display transaction amounts in thousands with a dollar sign for improved clarity.
+
+The results from the analysis revealed:
+
+- A clear separation between regular transaction behavior and anomalies.
+- The anomalies, displayed as points outside the expected range, indicate significant financial irregularities. These     could stem from events like large-scale transactions, fraud, or system anomalies.
+- The shaded grey area represents the acceptable range based on trend and seasonality, making it visually intuitive to    spot deviations.
+
+**Key Insights:**
+The model effectively flags irregularities that may otherwise go unnoticed in large datasets. By focusing on anomalies, businesses can take swift corrective measures and prioritize investigations into unusual activities.
+
 
 
 *Discussion:*
@@ -267,3 +320,15 @@ Drill down into anomalies by categories like Country, Transaction Type, or Indus
 
 ***Integration with External Data:***
 Include external factors (e.g., economic indicators, geopolitical events) to improve anomaly interpretation and contextualize unusual patterns.
+
+
+*Conclusion*
+
+With respect to Time Series Anomaly Detection carried our above, this analysis successfully identifies anomalies in financial transaction data using a combination of time-series decomposition and statistical methods. The intuitive visualization provides stakeholders with a clear view of irregular patterns, enabling faster decision-making and proactive financial oversight.
+
+By understanding when and where anomalies occur, organizations can:
+
+Detect fraud or operational errors early.
+Monitor transaction trends effectively.
+Improve the overall accuracy and integrity of their financial processes.
+In the future, this approach can be enhanced by incorporating machine learning techniques for anomaly detection, integrating real-time monitoring systems, and refining anomaly classification with domain-specific insights. This work lays the groundwork for building a more robust and scalable system for anomaly detection in financial data.

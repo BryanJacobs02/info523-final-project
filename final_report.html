@@ -5793,8 +5793,8 @@ suspicious_top10 = head(suspicious_rules, 10)
 
 # plot top 10 rules
 plot(suspicious_top10, method = &quot;graph&quot;, engine = &quot;htmlwidget&quot;)</code></pre>
-<div class="visNetwork html-widget html-fill-item" id="htmlwidget-241965b6aa8087b40278" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-241965b6aa8087b40278">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],"label":["country=Brazil","country=South Africa","country=Switzerland","country=UK","amount_usd=1M-5M","shell_companies_involved=8-9","source_of_money=Illegal","industry=Casinos","industry=Construction","industry=Luxury Goods","industry=Oil & Gas","transaction_type=Cash Withdrawal","transaction_type=Property Purchase","rule 1","rule 2","rule 3","rule 4","rule 5","rule 6","rule 7","rule 8","rule 9","rule 10"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,100,11.04347826086955,2.434782608695643,65.56521739130434,21.08695652173913,5.304347826086954,19.65217391304348,36.8695652173913,1,48.34782608695649],"color":["#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#EE1B1B","#EE4747","#EE7575","#EE9494","#EEB1B1","#EEBABA","#EEBCBC","#EEC9C9","#EEDBDB","#EEDCDC"],"title":["country=Brazil","country=South Africa","country=Switzerland","country=UK","amount_usd=1M-5M","shell_companies_involved=8-9","source_of_money=Illegal","industry=Casinos","industry=Construction","industry=Luxury Goods","industry=Oil & Gas","transaction_type=Cash Withdrawal","transaction_type=Property Purchase","<B>[1]<\/B><BR><B>{country=UK,<BR>&nbsp;&nbsp;transaction_type=Cash Withdrawal}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0175<BR>confidence = 0.788<BR>coverage = 0.0222<BR>lift = 1.12<BR>count = 175<BR>order = 3<BR>id = 1","<B>[2]<\/B><BR><B>{country=Switzerland,<BR>&nbsp;&nbsp;industry=Luxury Goods}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0113<BR>confidence = 0.785<BR>coverage = 0.0144<BR>lift = 1.12<BR>count = 113<BR>order = 3<BR>id = 2","<B>[3]<\/B><BR><B>{country=Brazil,<BR>&nbsp;&nbsp;industry=Oil & Gas}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0107<BR>confidence = 0.781<BR>coverage = 0.0137<BR>lift = 1.11<BR>count = 107<BR>order = 3<BR>id = 3","<B>[4]<\/B><BR><B>{country=Brazil,<BR>&nbsp;&nbsp;transaction_type=Property Purchase}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0151<BR>confidence = 0.778<BR>coverage = 0.0194<BR>lift = 1.11<BR>count = 151<BR>order = 3<BR>id = 4","<B>[5]<\/B><BR><B>{country=Brazil,<BR>&nbsp;&nbsp;amount_usd=1M-5M,<BR>&nbsp;&nbsp;transaction_type=Property Purchase}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.012<BR>confidence = 0.774<BR>coverage = 0.0155<BR>lift = 1.1<BR>count = 120<BR>order = 4<BR>id = 5","<B>[6]<\/B><BR><B>{country=Brazil,<BR>&nbsp;&nbsp;industry=Construction}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0109<BR>confidence = 0.773<BR>coverage = 0.0141<BR>lift = 1.1<BR>count = 109<BR>order = 3<BR>id = 6","<B>[7]<\/B><BR><B>{country=South Africa,<BR>&nbsp;&nbsp;amount_usd=1M-5M,<BR>&nbsp;&nbsp;shell_companies_involved=8-9}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0119<BR>confidence = 0.773<BR>coverage = 0.0154<BR>lift = 1.1<BR>count = 119<BR>order = 4<BR>id = 7","<B>[8]<\/B><BR><B>{country=South Africa,<BR>&nbsp;&nbsp;amount_usd=1M-5M,<BR>&nbsp;&nbsp;transaction_type=Cash Withdrawal}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0131<BR>confidence = 0.771<BR>coverage = 0.017<BR>lift = 1.1<BR>count = 131<BR>order = 4<BR>id = 8","<B>[9]<\/B><BR><B>{country=South Africa,<BR>&nbsp;&nbsp;industry=Casinos}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0106<BR>confidence = 0.768<BR>coverage = 0.0138<BR>lift = 1.09<BR>count = 106<BR>order = 3<BR>id = 9","<B>[10]<\/B><BR><B>{country=UK,<BR>&nbsp;&nbsp;amount_usd=1M-5M,<BR>&nbsp;&nbsp;transaction_type=Cash Withdrawal}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0139<BR>confidence = 0.768<BR>coverage = 0.0181<BR>lift = 1.09<BR>count = 139<BR>order = 4<BR>id = 10"],"shape":["box","box","box","box","box","box","box","box","box","box","box","box","box","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle"],"x":[-0.4045922349674631,0.6774896998592572,-0.7858882709310037,0.2563225974087466,0.245062452203499,1,-0.0410351797311419,0.7348341234724898,-1,-0.563325904264202,-0.9443658600553589,0.4389847589536053,-0.1258467333473345,0.1260323518971287,-0.4439125547414209,-0.5719769810079691,-0.195124846738325,-0.04941115742204616,-0.5635890129695535,0.5287219286947988,0.4072076008134919,0.4440063285951039,0.2149506701461841],"y":[-0.565263948343787,-0.3549470357185774,0.8212770447622986,0.6969999165907539,-0.1913567173389883,-0.1691469081502887,-0.1379283499194636,-1,-0.1637433597318366,1,-0.8019116553439252,0.3970669059114884,-0.9880105965545817,0.4113101969440673,0.520848973013301,-0.5067239952702407,-0.6663889096595035,-0.5414563881147672,-0.210520313532117,-0.1988051209154763,-0.01228530217728052,-0.5979384290715748,0.2358843688624814]},"edges":{"from":[4,12,3,10,1,11,1,13,1,5,13,1,9,2,5,6,2,5,12,2,8,4,5,12,14,15,16,17,18,19,20,21,22,23],"to":[14,14,15,15,16,16,17,17,18,18,18,19,19,20,20,20,21,21,21,22,22,23,23,23,7,7,7,7,7,7,7,7,7,7],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":false},"physics":{"stabilization":false},"interaction":{"hover":true,"zoomSpeed":1}},"groups":["1","2"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
+<div class="visNetwork html-widget html-fill-item" id="htmlwidget-2f7fcba7023b4926237a" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-2f7fcba7023b4926237a">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],"label":["country=Brazil","country=South Africa","country=Switzerland","country=UK","amount_usd=1M-5M","shell_companies_involved=8-9","source_of_money=Illegal","industry=Casinos","industry=Construction","industry=Luxury Goods","industry=Oil & Gas","transaction_type=Cash Withdrawal","transaction_type=Property Purchase","rule 1","rule 2","rule 3","rule 4","rule 5","rule 6","rule 7","rule 8","rule 9","rule 10"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,100,11.04347826086955,2.434782608695643,65.56521739130434,21.08695652173913,5.304347826086954,19.65217391304348,36.8695652173913,1,48.34782608695649],"color":["#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#EE1B1B","#EE4747","#EE7575","#EE9494","#EEB1B1","#EEBABA","#EEBCBC","#EEC9C9","#EEDBDB","#EEDCDC"],"title":["country=Brazil","country=South Africa","country=Switzerland","country=UK","amount_usd=1M-5M","shell_companies_involved=8-9","source_of_money=Illegal","industry=Casinos","industry=Construction","industry=Luxury Goods","industry=Oil & Gas","transaction_type=Cash Withdrawal","transaction_type=Property Purchase","<B>[1]<\/B><BR><B>{country=UK,<BR>&nbsp;&nbsp;transaction_type=Cash Withdrawal}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0175<BR>confidence = 0.788<BR>coverage = 0.0222<BR>lift = 1.12<BR>count = 175<BR>order = 3<BR>id = 1","<B>[2]<\/B><BR><B>{country=Switzerland,<BR>&nbsp;&nbsp;industry=Luxury Goods}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0113<BR>confidence = 0.785<BR>coverage = 0.0144<BR>lift = 1.12<BR>count = 113<BR>order = 3<BR>id = 2","<B>[3]<\/B><BR><B>{country=Brazil,<BR>&nbsp;&nbsp;industry=Oil & Gas}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0107<BR>confidence = 0.781<BR>coverage = 0.0137<BR>lift = 1.11<BR>count = 107<BR>order = 3<BR>id = 3","<B>[4]<\/B><BR><B>{country=Brazil,<BR>&nbsp;&nbsp;transaction_type=Property Purchase}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0151<BR>confidence = 0.778<BR>coverage = 0.0194<BR>lift = 1.11<BR>count = 151<BR>order = 3<BR>id = 4","<B>[5]<\/B><BR><B>{country=Brazil,<BR>&nbsp;&nbsp;amount_usd=1M-5M,<BR>&nbsp;&nbsp;transaction_type=Property Purchase}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.012<BR>confidence = 0.774<BR>coverage = 0.0155<BR>lift = 1.1<BR>count = 120<BR>order = 4<BR>id = 5","<B>[6]<\/B><BR><B>{country=Brazil,<BR>&nbsp;&nbsp;industry=Construction}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0109<BR>confidence = 0.773<BR>coverage = 0.0141<BR>lift = 1.1<BR>count = 109<BR>order = 3<BR>id = 6","<B>[7]<\/B><BR><B>{country=South Africa,<BR>&nbsp;&nbsp;amount_usd=1M-5M,<BR>&nbsp;&nbsp;shell_companies_involved=8-9}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0119<BR>confidence = 0.773<BR>coverage = 0.0154<BR>lift = 1.1<BR>count = 119<BR>order = 4<BR>id = 7","<B>[8]<\/B><BR><B>{country=South Africa,<BR>&nbsp;&nbsp;amount_usd=1M-5M,<BR>&nbsp;&nbsp;transaction_type=Cash Withdrawal}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0131<BR>confidence = 0.771<BR>coverage = 0.017<BR>lift = 1.1<BR>count = 131<BR>order = 4<BR>id = 8","<B>[9]<\/B><BR><B>{country=South Africa,<BR>&nbsp;&nbsp;industry=Casinos}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0106<BR>confidence = 0.768<BR>coverage = 0.0138<BR>lift = 1.09<BR>count = 106<BR>order = 3<BR>id = 9","<B>[10]<\/B><BR><B>{country=UK,<BR>&nbsp;&nbsp;amount_usd=1M-5M,<BR>&nbsp;&nbsp;transaction_type=Cash Withdrawal}<\/B><BR>&nbsp;&nbsp; => <B>{source_of_money=Illegal}<\/B><BR><BR>support = 0.0139<BR>confidence = 0.768<BR>coverage = 0.0181<BR>lift = 1.09<BR>count = 139<BR>order = 4<BR>id = 10"],"shape":["box","box","box","box","box","box","box","box","box","box","box","box","box","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle"],"x":[0.4344417219218308,-0.6524272756400107,0.4709348522487242,-0.4751165476679877,-0.2416765878105591,-1,-0.0426880569308955,-0.6287600475512625,1,0.2184199510677582,0.4490494263597202,-0.6294546535510064,0.5482057428928224,-0.4099533343004642,0.1980389181663866,0.266090044300118,0.3666902023069405,0.1970788062785345,0.5658498047347522,-0.5425753434628587,-0.4740834778944089,-0.4078867672891447,-0.2968337660253356],"y":[0.3709748134706734,-0.2023514797823792,-0.8995348859263831,0.8245535072401895,0.1857242416059834,-0.08494900520903237,0.08954814746941553,-0.7701384138259944,0.3154301353263484,-1,1,0.4835450273314525,-0.07374434722427092,0.5183048448492145,-0.5681312329165304,0.59341280008088,0.06705192247585856,0.1426706181718798,0.2338676139199574,-0.0195686133759938,0.1483399748678305,-0.383327973281494,0.4804124332768644]},"edges":{"from":[4,12,3,10,1,11,1,13,1,5,13,1,9,2,5,6,2,5,12,2,8,4,5,12,14,15,16,17,18,19,20,21,22,23],"to":[14,14,15,15,16,16,17,17,18,18,18,19,19,20,20,20,21,21,21,22,22,23,23,23,7,7,7,7,7,7,7,7,7,7],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":false},"physics":{"stabilization":false},"interaction":{"hover":true,"zoomSpeed":1}},"groups":["1","2"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
 <p><em>note: .html will be submitted alongside .pdf so interactive
 figure can be viewed and used</em></p>
 <p>The top 10 transaction characteristic combinations associated with
@@ -5841,6 +5841,49 @@ enhancing the ability to detect and deter financial crimes.</p>
 </div>
 <div id="question-2" class="section level4">
 <h4>Question 2</h4>
+<p><em>Introduction</em></p>
+<p>In this project, we focus on identifying anomalies in financial
+transaction data over time using time-series analysis. The dataset
+contains key details such as transaction amounts, dates, transaction
+types, and associated countries. For this study, we specifically
+analyzed the Date of Transaction and Amount (USD) columns to aggregate
+daily transaction totals and detect any irregular patterns.</p>
+<p>The motivation behind this analysis stems from the critical need to
+identify unexpected spikes or drops in financial transactions, which
+could signal important events such as fraudulent activity, operational
+issues, or other irregularities. By uncovering such anomalies,
+businesses can take proactive measures, improve risk management, and
+enhance the integrity of their financial systems.</p>
+<p><em>Methodology</em></p>
+<p>To detect anomalies, we employed a structured and systematic approach
+using time-series analysis methods supported by the anomalize R package.
+The steps followed are:</p>
+<p><strong>Data Preprocessing:</strong> The Date of Transaction column
+was converted into a proper date format, and transaction amounts were
+aggregated daily. This ensured the data was in a suitable form for
+time-series analysis, making it easier to observe trends over time.</p>
+<p><strong>Time-Series Decomposition:</strong> Using STL (Seasonal-Trend
+decomposition using Loess), the time series was broken into three
+components:</p>
+<ul>
+<li><p>Trend: Long-term patterns in the data.</p></li>
+<li><p>Seasonality: Recurring patterns over fixed intervals.</p></li>
+<li><p>Remainder: Irregular fluctuations that could represent potential
+anomalies.</p></li>
+</ul>
+<p><strong>Anomaly Detection:</strong> The Interquartile Range (IQR)
+method was applied to the remainder component of the time series. This
+approach effectively flags anomalies by identifying points that deviate
+significantly from the expected range, while being robust to
+outliers.</p>
+<p><strong>Visualization:</strong> Anomalies were visualized on a
+time-series plot with clear highlights, making it easy to observe
+unusual spikes or drops. The Y-axis was formatted to show transaction
+amounts in thousands for better readability.</p>
+<p>This methodology was chosen because time-series decomposition
+separates noise from regular patterns, while the IQR method provides a
+simple yet powerful statistical approach for detecting anomalies.</p>
+<p><em>Data Analysis and Results</em></p>
 <pre class="r"><code>#| warning: false
 #| message: false
 
@@ -5911,6 +5954,33 @@ cat(&quot;Accuracy: &quot;, accuracy, &quot;\n&quot;)</code></pre>
 <pre><code>## Recall:  1</code></pre>
 <pre class="r"><code>cat(&quot;F1 Score: &quot;, f1_score, &quot;\n&quot;)</code></pre>
 <pre><code>## F1 Score:  0.9741697</code></pre>
+<p>The following key steps and insights were derived from the
+analysis:</p>
+<p><strong>Data Aggregation:</strong> Transaction amounts were grouped
+by day to observe daily trends. This provided a clearer picture of how
+financial activity fluctuates over time.</p>
+<p><strong>Anomaly Detection:</strong> By decomposing the time series
+and applying the IQR method, significant deviations from the expected
+transaction patterns were identified. These anomalies represent unusual
+spikes or drops that warrant further investigation.</p>
+<p><strong>Visualization of Anomalies:</strong> The final time-series
+plot highlights anomalies as dark points outside a shaded region of
+expected values. The Y-axis was reformatted to display transaction
+amounts in thousands with a dollar sign for improved clarity.</p>
+<p>The results from the analysis revealed:</p>
+<ul>
+<li>A clear separation between regular transaction behavior and
+anomalies.</li>
+<li>The anomalies, displayed as points outside the expected range,
+indicate significant financial irregularities. These could stem from
+events like large-scale transactions, fraud, or system anomalies.</li>
+<li>The shaded grey area represents the acceptable range based on trend
+and seasonality, making it visually intuitive to spot deviations.</li>
+</ul>
+<p><strong>Key Insights:</strong> The model effectively flags
+irregularities that may otherwise go unnoticed in large datasets. By
+focusing on anomalies, businesses can take swift corrective measures and
+prioritize investigations into unusual activities.</p>
 <p><em>Discussion:</em></p>
 <p><strong>Process Overview</strong></p>
 <p><strong>Data Preparation and Cleaning:</strong></p>
@@ -5977,6 +6047,23 @@ uncover targeted insights.</p>
 <p><strong><em>Integration with External Data:</em></strong> Include
 external factors (e.g., economic indicators, geopolitical events) to
 improve anomaly interpretation and contextualize unusual patterns.</p>
+<p><em>Conclusion</em></p>
+<p>With respect to Time Series Anomaly Detection carried our above, this
+analysis successfully identifies anomalies in financial transaction data
+using a combination of time-series decomposition and statistical
+methods. The intuitive visualization provides stakeholders with a clear
+view of irregular patterns, enabling faster decision-making and
+proactive financial oversight.</p>
+<p>By understanding when and where anomalies occur, organizations
+can:</p>
+<p>Detect fraud or operational errors early. Monitor transaction trends
+effectively. Improve the overall accuracy and integrity of their
+financial processes. In the future, this approach can be enhanced by
+incorporating machine learning techniques for anomaly detection,
+integrating real-time monitoring systems, and refining anomaly
+classification with domain-specific insights. This work lays the
+groundwork for building a more robust and scalable system for anomaly
+detection in financial data.</p>
 </div>
 
 
