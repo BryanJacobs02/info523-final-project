@@ -18,7 +18,9 @@ pacman::p_load(tidyverse,
                janitor,
                dplyr,
                arules,
-               arulesViz)
+               arulesViz,
+               anomalize,
+               caret)
 ```
 
 ## Question 1
@@ -86,6 +88,71 @@ plot(suspicious_top10, method = "graph", engine = "htmlwidget")
 
 ```{r}
 # q2 code
+
+
+#| warning: false
+#| message: false
+
+
+data <- read.csv("data/Big_Black_Money_Dataset.csv")
+
+# Convert 'Date of Transaction' to a Date-Time format
+data$`Date of Transaction` <- as.POSIXct(data$`Date.of.Transaction`, format = "%d-%m-%Y %H:%M")
+
+# Group data by date and sum the transaction amount
+time_series_data <- data |>
+  mutate(Date = as.Date(`Date of Transaction`)) |>
+  group_by(Date) |>
+  summarize(Total_Transaction_Amount = sum(`Amount..USD.`))
+
+# Apply anomalize to detect anomalies
+anomaly_results <- time_series_data |>
+  time_decompose(Total_Transaction_Amount, method = "stl") |>
+  anomalize(remainder, method = "iqr") |>
+  time_recompose()
+
+# Plot anomalies with customized Y-axis format (in thousands with dollar sign)
+anomaly_results |>
+  plot_anomalies(time_recomposed = TRUE) +
+  scale_y_continuous(
+    labels = scales::dollar_format(suffix = "k", scale = 1e-3) # Convert to thousands and add dollar sign
+  ) +
+  labs(
+    title = "Anomalies in Total Transaction Amount Over Time",
+    x = "Date",
+    y = "Total Transaction Amount ($ in thousands)"
+  )
+
+
+#Determining the accuracy of the model
+threshold <- quantile(time_series_data$Total_Transaction_Amount, 0.95)
+anomaly_results <- anomaly_results |>
+  left_join(time_series_data, by = "Date") |>
+  mutate(
+    Ground_Truth = ifelse(Total_Transaction_Amount > threshold, 1, 0),
+    Predicted_Anomaly = ifelse(anomaly == "Yes", 1, 0)
+  )
+
+confusion <- confusionMatrix(
+  factor(anomaly_results$Predicted_Anomaly),
+  factor(anomaly_results$Ground_Truth)
+)
+
+# Extract metrics from the confusion matrix
+accuracy <- confusion$overall["Accuracy"]
+precision <- confusion$byClass["Precision"]
+recall <- confusion$byClass["Recall"]
+f1_score <- 2 * ((precision * recall) / (precision + recall))
+
+# Print the metrics
+cat("Accuracy: ", accuracy, "\n")
+cat("Precision: ", precision, "\n")
+cat("Recall: ", recall, "\n")
+cat("F1 Score: ", f1_score, "\n")
+
+
+
+
 ```
 
-## 
+
