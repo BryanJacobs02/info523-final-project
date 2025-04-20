@@ -10,25 +10,18 @@ Together, these methods provide a data-driven foundation for proactive monitorin
 **Bryan Jacobs** — Association Rule Mining  
 **Anirudh K** — Time Series Anomaly Detection
 
-### Languages & Tools
-#### Languages/Packages:
+### Languages/Packages:
 * R
  * tidyverse (ggplot2, dplyr)
  * janitor
  * arules, arulesViz
  * anomalize
  * caret
-#### Software & Platforms
+
+### Software & Platforms
 * RStudio / R Markdown
 * GitHub
 
-### Skills & Concepts Used
-* Data Cleaning & Wrangling
-* Exploratory Data Analysis (EDA)
+### Models
 * Association Rule Mining
-* Time Series Modeling
-* Anomaly Detection
-* Data Visualization
-* Model Interpretation
-* Reproducible Research using R Markdown
-* Version Control (Git/GitHub)
+* Time Series Anomaly Detection
