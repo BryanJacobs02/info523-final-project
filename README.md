@@ -10,9 +10,11 @@ Together, these methods provide a data-driven foundation for proactive monitorin
 The Kaggle dataset used for this project can be accessed using the following link:
 - [Dataset Link](https://www.kaggle.com/datasets/waqi786/global-black-money-transactions-dataset)
 
+
 ### Authors
 **Bryan Jacobs** — Association Rule Mining  
 **Anirudh K** — Time Series Anomaly Detection
+
 
 ### Languages/Packages:
 * R
@@ -22,19 +24,23 @@ The Kaggle dataset used for this project can be accessed using the following lin
  * anomalize
  * caret
 
+
 ### Software & Platforms
 * RStudio / R Markdown
 * GitHub
 
+
 ### Models
 * Association Rule Mining
 * Time Series Anomaly Detection
+
 
 ### Repository Structure
 - **`data/`**: Contains raw data file for analysis.
 - **`code/`**: Contains `.Rmd` and `.html` files of code documentation with generated visuals.
 - **`report/`**: Contains `.Rmd` and `.html` files of final report, including relevant code and generated visuals.
 - **`README.md`**
+
 
 ### How To Run
 #### For Simple Viewing
