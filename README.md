@@ -6,6 +6,10 @@ The purpose of this project is to analyze financial transaction data in order to
 
 Together, these methods provide a data-driven foundation for proactive monitoring and intervention. By uncovering these insights, the project contributes to enhancing transparency and accountability in financial systems, with clear implications for civic and regulatory efforts.
 
+## Dataset
+The Kaggle dataset used for this project can be accessed using the following link:
+- [Dataset Link](https://www.kaggle.com/datasets/waqi786/global-black-money-transactions-dataset)
+
 ### Authors
 **Bryan Jacobs** — Association Rule Mining  
 **Anirudh K** — Time Series Anomaly Detection
