@@ -25,3 +25,12 @@ Together, these methods provide a data-driven foundation for proactive monitorin
 ### Models
 * Association Rule Mining
 * Time Series Anomaly Detection
+
+- **`data/`**: Contains raw data files for analysis. These are typically excluded from version control for privacy or size reasons and are added to `.gitignore`.
+- **`docs/`**: Contains any documentation files relevant to the project, such as instructions, explanations, or reports.
+- **`src/`**: The source code for the project. It's divided into directories based on different aspects of the project (e.g., association rule mining, anomaly detection).
+- **`results/`**: Output from the analysis, such as generated charts, graphs, or final results. These are typically not tracked in version control.
+- **`.gitignore`**: Specifies files or directories to be ignored by Git (e.g., `.DS_Store`, `.env`).
+- **`README.md`**: Provides an overview of the project, installation instructions, and any relevant usage details.
+- **`LICENSE`**: The license under which the project is distributed.
+- **`requirements.txt`**: A file listing the necessary dependencies for the project (if applicable).
