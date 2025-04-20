@@ -28,8 +28,14 @@ Together, these methods provide a data-driven foundation for proactive monitorin
 
 ### Repository Structure
 - **`data/`**: Contains raw data file for analysis.
-- **`code/`**: Contains .Rmd and .html files of code documentation with generated visuals.
-- **`report/`**: Contains .Rmd and .html files of final report, including relevant code and generated visuals.
+- **`code/`**: Contains `.Rmd` and `.html` files of code documentation with generated visuals.
+- **`report/`**: Contains `.Rmd` and `.html` files of final report, including relevant code and generated visuals.
 - **`README.md`**
 
 ### How To Run
+#### For Simple Viewing
+1. Download and open desired .html files
+
+#### To Run Yourself
+1. Clone the repository.
+2. 
