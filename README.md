@@ -46,7 +46,7 @@ The Kaggle dataset used for this project can be accessed using the following lin
   
 ## How To Run
 #### For Simple Viewing
-1. Download and open desired `.html` files
+1. Download and open desired `.html` files.
 
 #### To Run Yourself
 1. Clone the repository.
