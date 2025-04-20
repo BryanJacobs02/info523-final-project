@@ -7,7 +7,7 @@ The purpose of this project is to analyze financial transaction data in order to
 Together, these methods provide a data-driven foundation for proactive monitoring and intervention. By uncovering these insights, the project contributes to enhancing transparency and accountability in financial systems, with clear implications for civic and regulatory efforts.
 
 ### Authors
-**Bryan Jacobs** — Association Rule Mining
+**Bryan Jacobs** — Association Rule Mining  
 **Anirudh K** — Time Series Anomaly Detection
 
 ### Languages & Tools
