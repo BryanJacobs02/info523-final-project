@@ -38,4 +38,6 @@ Together, these methods provide a data-driven foundation for proactive monitorin
 
 #### To Run Yourself
 1. Clone the repository.
-2. 
+2. Open `info523_project_code.Rmd` in RStudio.
+3. Download `Big_Black_Money_Dataset.csv` from `data/` folder and place in correct directory.
+4. Run the code as usual.
