@@ -12,7 +12,7 @@ Anirudh K: Time Series Anomaly Detection
 
 ### Languages/Packages
 * R
-* * R
+  * R
 
 ### Software
 * R Markdown
