@@ -8,7 +8,6 @@ Together, these methods provide a data-driven foundation for proactive monitorin
 
 ### Authors
 **Bryan Jacobs** — Association Rule Mining
-
 **Anirudh K** — Time Series Anomaly Detection
 
 ### Languages & Tools
