@@ -20,11 +20,11 @@ The Kaggle dataset used for this project can be accessed using the following lin
   
 ## Languages/Packages:
 * R
-   * tidyverse (ggplot2, dplyr)
-   * janitor
-   * arules, arulesViz
-   * anomalize
-   * caret
+  * tidyverse (ggplot2, dplyr)
+  * janitor
+  * arules, arulesViz
+  * anomalize
+  * caret
   
   
 ## Software & Platforms
